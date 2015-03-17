@@ -6,8 +6,8 @@
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/resize/assets/skins/sam/resize.css" />
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/imagecropper/assets/skins/sam/imagecropper.css" />
 		<!-- JS required for image from yui library -->
-		<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.5.2/build/yahoo-dom-event/yahoo-dom-event.js&;2.5.2/build/dragdrop/dragdrop-min.js&2.5.2/build/element/element-beta-min.js&2.5.2/build/resize/resize-beta-min.js&2.5.2/build/imagecropper/imagecropper-beta-min.js&2.5.2/build/connection/connection-min.js&2.5.2/build/json/json-min.js">
-		</script>
+		<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.5.2/build/yahoo-dom-event/yahoo-dom-event.js&2.5.2/build/dragdrop/dragdrop-min.js&2.5.2/build/element/element-beta-min.js&2.5.2/build/resize/resize-beta-min.js&2.5.2/build/imagecropper/imagecropper-beta-min.js&2.
+5.2/build/connection/connection-min.js&2.5.2/build/json/json-min.js"></script>
 	</head>
 	<body>
 		<h1> Image Uploader and Cropper </h1>
@@ -18,7 +18,7 @@
 		<div id="imageContainer"></div>
 		<div id="downloadLink"></div>
 		<script type="text/javascript">
-		YAHOO.util.Event.on('uploadButton', 'click', uploader.carry);
+		
 		editor = {
 			image: null,
 			crop: null,
@@ -37,7 +37,7 @@
 			
 			getCroppedImage: function(){
 				var coordinates = editor.getCoordinates();
-				var url = 'crop.php?image=' + editor.image + '&cropStartX=' + coordinates.left +'&cropStartY=' + coordinates.top +'&cropWidth=' + coordinates.width +'&cropHeight=' + coordinates.height;
+				var url = 'cropper.php?image=' + editor.image + '&cropStartX=' + coordinates.left +'&cropStartY=' + coordinates.top +'&cropWidth=' + coordinates.width +'&cropHeight=' + coordinates.height;
 				YAHOO.util.Dom.get('downloadLink').innerHTML = '<a href="' + url + '">download cropped image</a>';		
 
 			},
@@ -69,7 +69,7 @@
 				});
 			}
 		};
-		
+		YAHOO.util.Event.on('uploadButton', 'click', uploader.carry);
 		</script>
 	</body>
 </html>
