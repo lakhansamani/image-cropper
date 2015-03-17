@@ -16,6 +16,60 @@
 			<input type="button" id="uploadButton" value="Upload"/>
 		</form>
 		<div id="imageContainer"></div>
+		<div id="downloadLink"></div>
+		<script type="text/javascript">
+
+		editor = {
+			image: null,
+			crop: null,
+			
+			init: function(image){
+				// set our image
+				editor.image = image;
+							
+				// our image cropper from the uploaded image					
+				editor.crop = new YAHOO.widget.ImageCropper('yuiImg');
+				editor.crop.on('moveEvent', function() {
+					// get updated coordinates
+					editor.getCroppedImage();
+				});
+			},
+			
+			getCroppedImage: function(){
+				var coordinates = editor.getCoordinates();
+				var url = 'crop.php?image=' + editor.image + '&cropStartX=' + coordinates.left +'&cropStartY=' + coordinates.top +'&cropWidth=' + coordinates.width +'&cropHeight=' + coordinates.height;
+				YAHOO.util.Dom.get('downloadLink').innerHTML = '<a href="' + url + '">download cropped image</a>';		
+
+			},
+
+			getCoordinates: function(){
+				return editor.crop.getCropCoords();
+			}
+		};
+		//uploader json object for sending data to upload.php
+		uploader = {
+			carry: function(){
+				// set form
+				YAHOO.util.Connect.setForm('uploadForm', true);
+				// upload image
+				YAHOO.util.Connect.asyncRequest('POST', 'upload.php', {
+					upload: function(o){
+						// parse our json data
+						var jsonData = YAHOO.lang.JSON.parse(o.responseText);
+						
+						// put image in our image container
+						YAHOO.util.Dom.get('imageContainer').innerHTML = '<img id="yuiImg" src="' + jsonData.image + '" width="' + jsonData.width + '" height="' + jsonData.height + '" alt="" />';
+								
+						// init our editor
+						editor.init(jsonData.image); 
+									
+						// get first cropped image
+						editor.getCroppedImage();
+					}
+				});
+			}
+		};
+		</script>
 	</body>
 </html>
 
