@@ -15,6 +15,7 @@
 			<label>Image : </label><input type="file" name="uploadImage" id="uploadImage" />
 			<input type="button" id="uploadButton" value="Upload"/>
 		</form>
+		<br/>
 		<div id="imageContainer"></div>
 		<div id="downloadLink"></div>
 		<script type="text/javascript">
