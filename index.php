@@ -10,7 +10,11 @@
 		</script>
 	</head>
 	<body>
-		
+		<h1> Image Uploader and Cropper </h1>
+		<form action="upload.php" enctype="multipart/form-data" method="post" name="uploadForm" id="uploadForm">
+			<label>Image : </label><input type="file" name="uploadImage" id="uploadImage" />
+			<input type="button" id="uploadButton" value="Upload"/>
+		</form>
 	</body>
 </html>
 
