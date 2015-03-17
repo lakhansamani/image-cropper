@@ -18,7 +18,7 @@
 		<div id="imageContainer"></div>
 		<div id="downloadLink"></div>
 		<script type="text/javascript">
-
+		YAHOO.util.Event.on('uploadButton', 'click', uploader.carry);
 		editor = {
 			image: null,
 			crop: null,
